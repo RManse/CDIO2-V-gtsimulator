@@ -20,9 +20,9 @@ public class VsCon {
     
     public static void main(String[] args) throws IOException{
         listener = new ServerSocket(portdst);
-            System.out.println("Venter paa connection på port " + portdst );
+            System.out.println("Venter på connection på port " + portdst );
             System.out.println("Indtast eventuel portnummer som 1. argument");
-            System.out.println("paa kommando linien for andet portnr");
+            System.out.println("på kommando linien for andet portnr");
         sock = listener.accept();
         instream = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         outstream = new DataOutputStream(sock.getOutputStream());
@@ -58,7 +58,7 @@ public class VsCon {
                 }
                 else if ((inline.startsWith("Q"))){
                     System.out.println("");
-                    System.out.println("Program stoppet Q modtaget paa com   port");
+                    System.out.println("Program stoppet Q modtaget pa com   port");
                     System.in.close();
                     System.out.close();
                     instream.close();
@@ -95,8 +95,8 @@ else {
         System.out.println("S, T, D 'TEST', DW, RM20 8 .... , B og Q         ");
         System.out.println("på kommunikationsporten.                         ");
         System.out.println("******")						     ;
-        System.out.println("Tast T for tara (svarende til knaptryk paa vegt)") ;
-        System.out.println("Tast B for ny brutto (svarende til at belastningen paa vegt ændres)");
+        System.out.println("Tast T for tara (svarende til knaptryk på vægt)") ;
+        System.out.println("Tast B for ny brutto (svarende til at belastningen på vægt ændres)");
         System.out.println("Tast Q for at afslutte program program");
         System.out.println("Indtast (T/B/Q for knaptryk / brutto ændring / quit)");
         System.out.print  ("Tast her: ");
