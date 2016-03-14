@@ -19,11 +19,11 @@ public class VsCon {
     static boolean rm20flag = false;
     //Test
     public static void main(String[] args) throws IOException{
-        listener = new ServerSocket(portdst);
+        listener = new ServerSocket(portdst); // lytteren
             System.out.println("Venter på connection på port " + portdst );
             System.out.println("Indtast eventuel portnummer som 1. argument");
             System.out.println("på kommando linien for andet portnr");
-        sock = listener.accept();
+        sock = listener.accept(); // opretter en socket, da ServerSocket snakker med mange klienter
         instream = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         outstream = new DataOutputStream(sock.getOutputStream());
         printmenu();
