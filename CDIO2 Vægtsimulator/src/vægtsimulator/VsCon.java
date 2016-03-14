@@ -26,16 +26,22 @@ public class VsCon {
         sock = listener.accept(); // opretter en socket, da ServerSocket snakker med mange klienter
         instream = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         outstream = new DataOutputStream(sock.getOutputStream());
+        
+        PrintWriter writer = new PrintWriter(outstream); // Så behøver vi ikke skrive cr lf.
+        writer.print("fishit");
         printmenu();
         try{
             while (!(inline = instream.readLine().toUpperCase()).isEmpty()){ //her ventes på input
+            	System.out.println("test: "+inline);
+            	writer.println("test: "+inline);
+            	outstream.writeBytes("test: "+inline);
             	if (inline.startsWith("RM")){						
                 	// ikke implimenteret
 
  		}
                 else if (inline.startsWith("D")){
                     if (inline.equals("DW"))
-                        indtDisp="";
+                        indtDisp="output";
                     else
                         indtDisp=(inline.substring(2, inline.length()));//her skal anførselstegn udm.
                         printmenu();
