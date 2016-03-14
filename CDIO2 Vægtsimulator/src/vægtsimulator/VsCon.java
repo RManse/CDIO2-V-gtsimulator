@@ -17,7 +17,7 @@ public class VsCon {
     static BufferedReader instream;
     static DataOutputStream outstream;
     static boolean rm20flag = false;
-    
+    //Test
     public static void main(String[] args) throws IOException{
         listener = new ServerSocket(portdst);
             System.out.println("Venter på connection på port " + portdst );
