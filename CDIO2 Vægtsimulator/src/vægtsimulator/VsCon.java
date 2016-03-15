@@ -28,24 +28,29 @@ public class VsCon {
         outstream = new DataOutputStream(sock.getOutputStream());
         
         PrintWriter writer = new PrintWriter(outstream); // Så behøver vi ikke skrive cr lf.
-        writer.print("fishit");
+//        writer.print("fishit");
         printmenu();
         try{
             while (!(inline = instream.readLine().toUpperCase()).isEmpty()){ //her ventes på input
             	System.out.println("test: "+inline);
             	writer.println("test: "+inline);
-            	outstream.writeBytes("test: "+inline);
+//            	outstream.writeBytes("test: "+inline);
             	if (inline.startsWith("RM")){						
                 	// ikke implimenteret
 
- 		}
-                else if (inline.startsWith("D")){
+            	}
+                else if (inline.startsWith("D TEST")){
                     if (inline.equals("DW"))
-                        indtDisp="output";
+                    {
+                        indtDisp="DW A";
+                        printmenu();
+                        outstream.writeBytes("DW A"+"\r\n");
+                    }
+                    	
                     else
                         indtDisp=(inline.substring(2, inline.length()));//her skal anførselstegn udm.
                         printmenu();
-                        outstream.writeBytes("DB"+"\r\n");
+                        outstream.writeBytes("D A"+"\r\n");
                 }
                 else if (inline.startsWith("T")){
                     outstream.writeBytes("T S " + (tara) + " kg "+"\r\n");		//HVOR MANGE SPACE?
@@ -73,7 +78,8 @@ public class VsCon {
                 }
                 
 
-else { 
+                else 
+                { 
                     printmenu();
                     outstream.writeBytes("ES"+"\r\n");
                 }
