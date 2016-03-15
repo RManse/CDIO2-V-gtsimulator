@@ -50,9 +50,7 @@ public class VsCon {
                     }
                     	
                     else {
-                        
                         String s = inline;
-                        
                         if (s.substring(3) != "\"")
                         	s = s.substring(2, s.length());
                         else 
@@ -62,11 +60,7 @@ public class VsCon {
                         	s = s.substring(0, s.indexOf('"'));
                         else
                         	s = s.substring(0, 7);
-                        indtDisp=(s);//her skal anførselstegn udm.
-                        
-                        
-                        
-//                        System.out.println(s); //Det virker. skal ikke bruges.
+                        indtDisp=(s);//her skal anførselstegn udm. das ist gjort
                         
                     }
                     
@@ -90,7 +84,7 @@ public class VsCon {
                 }
                 else if ((inline.startsWith("Q"))){
                     System.out.println("");
-                    System.out.println("Program stoppet Q modtaget pa com   port");
+                    System.out.println("Program stoppet Q modtaget pa com port");
                     System.in.close();
                     System.out.close();
                     instream.close();
