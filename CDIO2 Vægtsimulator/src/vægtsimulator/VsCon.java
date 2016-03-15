@@ -39,16 +39,37 @@ public class VsCon {
                 	// ikke implimenteret
 
             	}
-                else if (inline.startsWith("D test")){
+                else if (inline.startsWith("D")){
                     if (inline.equals("DW"))
                     {
+                    	
                     	indtDisp=(inline.substring(1, inline.length()));//her skal anførselstegn udm.
                         printmenu();
-                        outstream.writeBytes("DW A"+"\r\n");
+                        writer.print("DW A"+"\r\n");
+//                        outstream.writeBytes("DW A"+"\r\n");
                     }
                     	
-                    else
-                        indtDisp=(inline.substring(2, inline.length()));//her skal anførselstegn udm.
+                    else {
+                        
+                        String s = inline;
+                        
+                        if (s.substring(3) != "\"")
+                        	s = s.substring(2, s.length());
+                        else 
+                        	s = s.substring(s.indexOf('"')+1, s.length());
+                        
+                        if (s.length() <= 7)
+                        	s = s.substring(0, s.indexOf('"'));
+                        else
+                        	s = s.substring(0, 7);
+                        indtDisp=(s);//her skal anførselstegn udm.
+                        
+                        
+                        
+//                        System.out.println(s); //Det virker. skal ikke bruges.
+                        
+                    }
+                    
                         printmenu();
                         outstream.writeBytes("D A"+"\r\n");
                 }
@@ -91,7 +112,7 @@ public class VsCon {
     }
     public static void printmenu(){
         for (int i=0;i<2;i++)
-        System.out.println("                                                 ");
+        	System.out.println("                                                 ");
         System.out.println("*************************************************");
         System.out.println("Netto: " + (brutto-tara)+ " kg"                   );
         System.out.println("Instruktionsdisplay: " +  indtDisp    );
