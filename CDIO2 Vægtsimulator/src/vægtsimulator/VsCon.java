@@ -39,10 +39,10 @@ public class VsCon {
                 	// ikke implimenteret
 
             	}
-                else if (inline.startsWith("D TEST")){
+                else if (inline.startsWith("D test")){
                     if (inline.equals("DW"))
                     {
-                        indtDisp="DW A";
+                    	indtDisp=(inline.substring(1, inline.length()));//her skal anførselstegn udm.
                         printmenu();
                         outstream.writeBytes("DW A"+"\r\n");
                     }
