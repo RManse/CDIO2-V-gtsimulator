@@ -28,60 +28,73 @@ public class VsCon {
         outstream = new DataOutputStream(sock.getOutputStream());
         
         PrintWriter writer = new PrintWriter(outstream); // Så behøver vi ikke skrive cr lf.
-//        writer.print("fishit");
         printmenu();
         try{
             while (!(inline = instream.readLine().toUpperCase()).isEmpty()){ //her ventes på input
             	System.out.println("test: "+inline);
             	writer.println("test: "+inline);
-//            	outstream.writeBytes("test: "+inline);
-            	if (inline.startsWith("RM")){						
-                	// ikke implimenteret
+            	
+            	//In progress
+            	if (inline.startsWith("RM")){
+            		
+            		String rm1 = inline.substring(7);
+            		outstream.writeBytes("RM20 B"+"\r\n");
+            		outstream.writeBytes("RM20 A "+rm1+"\r\n");
+            		
 
             	}
+            	
+            	//In progress
                 else if (inline.startsWith("D")){
+                	
+                	//Done
                     if (inline.equals("DW"))
                     {
                     	
-                    	indtDisp=(inline.substring(1, inline.length()));//her skal anførselstegn udm.
+                    	indtDisp=(inline.substring(1, inline.length()));
                         printmenu();
-                        writer.print("DW A"+"\r\n");
-//                        outstream.writeBytes("DW A"+"\r\n");
+                        outstream.writeBytes("DW A"+"\r\n");
                     }
-                    	
+                    
+                    //Næsten Done
                     else {
                         String s = inline;
-                        if (s.substring(3) != "\"")
-                        	s = s.substring(2, s.length());
-                        else 
+                        if (s.substring(2).startsWith("\""))
                         	s = s.substring(s.indexOf('"')+1, s.length());
+                        else 
+                        	s = s.substring(2, s.length());
+                        
+                        //SKAL IMPLEMENTERES: Hvis der ikke er " " " i input, skal den stoppe ved s.lenght istedet for at crashe
                         
                         if (s.length() <= 7)
                         	s = s.substring(0, s.indexOf('"'));
                         else
                         	s = s.substring(0, 7);
-                        indtDisp=(s);//her skal anførselstegn udm. das ist gjort
                         
-                    }
-                    
+                        indtDisp = s;
                         printmenu();
                         outstream.writeBytes("D A"+"\r\n");
+                    }
                 }
+            	//Done
                 else if (inline.startsWith("T")){
-                    outstream.writeBytes("T S " + (tara) + " kg "+"\r\n");		//HVOR MANGE SPACE?
+                    outstream.writeBytes("T S      " + (tara) + " kg "+"\r\n");		//HVOR MANGE SPACE?
                     tara=brutto;
                     printmenu();
                 }
+            	//Done
                 else if (inline.startsWith("S")){
                     printmenu();
-                    outstream.writeBytes("S S " + (brutto-tara)+ " kg "  +"\r\n");//HVOR MANGE SPACE?
+                    outstream.writeBytes("S S      " + (brutto-tara)+ " kg "  +"\r\n");//HVOR MANGE SPACE?
                 }
+            	//Done
                 else if (inline.startsWith("B")){ //denne ordre findes ikke på en fysisk vægt
                     String temp= inline.substring(2,inline.length());
                     brutto = Double.parseDouble(temp);
                     printmenu();
                     outstream.writeBytes("DB"+"\r\n");
                 }
+            	//Done
                 else if ((inline.startsWith("Q"))){
                     System.out.println("");
                     System.out.println("Program stoppet Q modtaget pa com port");
@@ -90,6 +103,25 @@ public class VsCon {
                     instream.close();
                     outstream.close();
                     System.exit(0);
+                }
+            	//Done
+                else if ((inline.startsWith("P"))) {
+                	String p1 = inline.substring(4);
+                	String s = inline;
+                    if (s.substring(5).startsWith("\""))
+                    	s = s.substring(s.indexOf('"')+1, s.length());
+                    else 
+                    	s = s.substring(5, s.length());
+                    
+                    if (s.length() <= 30)
+                    	s = s.substring(0, s.indexOf('"'));
+                    else
+                    	s = s.substring(0, 30);
+                    
+                    indtDisp = s;
+                    printmenu();
+                    outstream.writeBytes("P111 A"+"\r\n");
+                	
                 }
                 
 
