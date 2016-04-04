@@ -37,9 +37,41 @@ public class VsCon {
             	//In progress
             	if (inline.startsWith("RM")){
             		
+            		
+//            		RM20 8 "INDTAST NR" "" "&3"
+            		
             		String rm1 = inline.substring(7);
             		outstream.writeBytes("RM20 B"+"\r\n");
             		outstream.writeBytes("RM20 A "+rm1+"\r\n");
+            		
+//            		Putty sekvens:
+//            			RM20 8 "TEST" "hej" "&3kg"
+//            			RM20 B
+//            		*Der indtastes "5555" på vægten*
+//            			RM20 A "5555"
+            		
+//            			RM20 8 "TEST" "" "&1kg"
+//            			RM20 B
+//            		*Der indtastes "JMD" på vægten*
+//            			RM20 A "JMD"
+            		
+//            			RM20 8 "TEST" "" "&1kg"
+//            			RM20 B
+//            		*Der trykkes cancel på vægten*
+//            			RM20 C
+            		
+//            			RM20 8 "TEST" "" "&1kg"
+//            			RM20 B
+//            		*Der trykkes cancel på vægten*
+//            			RM20 A ""
+            		
+//            			RM20 8 "TEST" "" "&2kg"
+//            			RM20 B
+//            		*Der trykkes "dm" på vægten*
+//            			RM20 A "dm"
+
+//			RM20 8 "Her står hvad du ber om" "Her er et gemt preset, den må gerne være tom" "Her står &1, &2, eller &3 og en enhed, fx kg"
+
             		
 
             	}
