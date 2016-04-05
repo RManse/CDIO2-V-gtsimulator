@@ -1,7 +1,8 @@
 package vægtsimulator;
 
-import java.io.*;
+import java.io.*; 
 import java.net.*;
+import java.util.Scanner;
 
 //Den givne klasse til opgaven. Intet virker
 //smiley face
@@ -17,7 +18,6 @@ public class VsCon {
     static BufferedReader instream;
     static DataOutputStream outstream;
     static boolean rm20flag = false;
-    //Test
     public static void main(String[] args) throws IOException{
         listener = new ServerSocket(portdst); // lytteren
             System.out.println("Venter på connection på port " + portdst );
@@ -31,8 +31,8 @@ public class VsCon {
         printmenu();
         try{
             while (!(inline = instream.readLine().toUpperCase()).isEmpty()){ //her ventes på input
-            	System.out.println("test: "+inline);
-            	writer.println("test: "+inline);
+//            	System.out.println("test 1: "+inline);
+//            	writer.println("test 2: "+inline);
             	
             	//In progress
             	if (inline.startsWith("RM")){
@@ -40,9 +40,24 @@ public class VsCon {
             		
 //            		RM20 8 "INDTAST NR" "" "&3"
             		
-            		String rm1 = inline.substring(7);
+            		//Henter teksten i fra første anførselstegn
+            		String rm1 = inline.substring(8);
+            		rm1 = rm1.substring(0, rm1.indexOf('"'));
+            		//Virker
+            		
+            		//Henter &1, &2, &3
+            		int a = inline.indexOf('&');
+            		String rm2 = inline.substring(a);
+            		rm2 = rm2.substring(0, rm2.indexOf('"'));
+            		//Virker
             		outstream.writeBytes("RM20 B"+"\r\n");
-            		outstream.writeBytes("RM20 A "+rm1+"\r\n");
+            		
+            		Scanner skanner = new Scanner(System.in);
+            		System.out.print(rm1+": ");
+            		String rm3 = skanner.nextLine();
+            		skanner.close();
+            		
+            		outstream.writeBytes("RM20 A \""+rm3+"\"\r\n");
             		
 //            		Putty sekvens:
 //            			RM20 8 "TEST" "hej" "&3kg"
